@@ -21,5 +21,22 @@
   </div>
   </div>
 <script type="text/javascript">!function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p=" ",n(n.s=0)}([function(e,t,n){e.exports=n(1)},function(e,t,n){"use strict";n.r(t);n(2)},function(e,t,n){}]);</script></body>
-
+<script type="text/javascript">
+        // 使用 IIFE 模式立即調用裡面的 JavaScript 程式碼
+        (function () {
+            // 使用 fetch API 來取得 routes.json 短網址對照表
+            // 請注意 fetch 不支援 IE 瀏覽器，若你想要有更好的相容性，請改用 XMLHttpRequest
+            fetch('routes.json')
+                .then(response => response.json())
+                .then(routes => {
+                    // 取出當前網址中，最後一個 / 之後的值
+                    // 以上面的範例來說，就會取道 short-url 這個值
+                    var fragment = location.pathname.split('/').pop();
+                    // 從 routes.json 中找到該關鍵字所對應到的網址
+                    var url = routes[fragment];
+                    // 若該關鍵字有設定對應的網址，則轉跳到該網址中，若沒有則回到首頁
+                    location.href = url ? url : './index.html';
+                });
+        })();
+    </script>
 </html>
